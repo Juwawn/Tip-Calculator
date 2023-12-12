@@ -9,28 +9,28 @@
 </head>
 <body>
     <header class="header" id="header">
-        <div class="container">
-            <h1 class="heading">Tip Calculator</h1>
-            <p class="intro-test">By Wan</p>
+        <div class="container text-center">
+            <h1>Tip Calculator</h1>
+            <p class="intro-text">By Jarissa</p>
         </div>
     </header>
-    
+
     <main class="main" id="main">
         <section class="menu-section">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        [item]
-                    </div>
-                    <div class="col-md-3">
-                        [item]
-                    </div>
-                    <div class="col-md-3">
-                        [item]
-                    </div>
-                    <div class="col-md-3">
-                        [item]
-                    </div>
+                <h2 class="menu-heading text-capitalize text-center">our menu</h2>
+                <div class="menu-div" id="appetizerDiv">
+                    <!-- <h3 class="menu-subheading text-capitalize">our appetizers</h3> -->
+                    <!-- <div class="row" id="appRow"></div> -->
+                </div>
+                <div class="menu-div" id="entreeDiv">
+                    <!-- <div class="row" id="entreeRow"></div> -->
+                </div>
+                <div class="menu-div" id="drinkDiv">
+                    <!-- <div class="row" id="drinkDiv"></div> -->
+                </div>
+                <div class="menu-div" id="dessertDiv">
+                    <!-- <div class="row" id="dessertDiv"></div> -->
                 </div>
             </div>
         </section>
@@ -38,40 +38,30 @@
             <div class="container">
                 <div class="row">
                     <div class="col-6">
-                        <form action="#">
-                            <h2 class="form-heading">your subtotal:</h2>
-                            <input type="number" value="" min="0" class="mb-3">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Choose tip
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#" class="dropdown-item">10%</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="dropdown-item">15%</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="dropdown-item">18%</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="dropdown-item">22%</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="dropdown-item">other amount</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <label for="otherAmt">For other amount:</label>
-                            <input type="number" value="" id="otherAmt" min="0">
-                        </form>
+                        <div class="subtotal-div">
+                            <form action="#">
+                                <h2 class="form-heading text-capitalize">your subtotal: $<span id="cartSubtotal">0.00</span></h2>
+                                <select name="tipAmt" id="tipAmt">
+                                    <option value="">Choose Tip</option>
+                                    <option value=".1">10%</option>
+                                    <option value=".15">15%</option>
+                                    <option value=".18">18%</option>
+                                    <option value=".22">22%</option>
+                                </select>
+                                <label for="otherAmt">For other amount:</label>
+                                <input type="number" value="0" id="otherAmt" min="0" class="mb-3">
+                                    <button class="btn btn-primary text-capitalize" id="confirmBtn">confirm tip</button>
+                            </form>
+                        </div>
                     </div>
                     <div class="col-6">
                         <div class="ticket-div">
-                            <h2>your total is:</h2>
-                            <p class="total-text">$<span class="total"></span>
-                            </p>
+                            <h2 class="text-capitalize text-center">Your receipt:</h2>
+                            <ol class="receipt" id="receipt"></ol>
+                            <p class="subtotal-text text-end">Subtotal: $<span id="theSubtotal">0.00</span></p>
+                            <p class="text-end">Tax $<span id="tax">0.00</span></p>
+                            <p class="text-end tip-total" id="tipTotal">Tip: $<span id="yourTip">0.00</span></p>
+                            <p class="total-text text-end">Total Bill: $<span id="total">0.00</span></p>
                         </div>
                     </div>
                 </div>
@@ -81,7 +71,7 @@
 
     <footer class="footer" id="footer">
         <div class="container">
-            <p class="colophon">site by Juwawn Clark &copy;2023</p>
+            <p class="colophon text-center">site by &;SemiiJ</p>
         </div>
     </footer>
 

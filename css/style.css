@@ -1,1 +1,46 @@
-* { box-sizing: border-box;}
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #eaea;
+}
+
+.header {
+    padding: 10px 0;
+    background-color: midnightblue;
+    border-bottom: 3px solid crimson;
+
+}
+
+.main {
+    padding: 40px 0;
+}
+
+h1 {
+    color: burlywood;
+}
+
+h2 {
+    color: crimson;
+}
+
+.intro-test {
+    color: burlywood;
+}
+
+.section {
+    padding: 60px 0;
+}
+
+.subtotal-div, .ticket-div {
+    padding: 15px;
+    background-color: whitesmoke;
+    border: 3px solid midnightblue;
+    border-radius: 5px;
+}
+
+.footer {
+    padding: 10px 0;
+}
+
