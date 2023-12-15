@@ -346,29 +346,23 @@
 //         }
         
 //         console.log(receiptArray);
-        
+
 //         subtotal+=price
 //         cartSubtotal.innerText = subtotal.toFixed(2)
 //     })
 // })
 
 const confirmBtn = document.getElementById('confirmBtn');
-
 const totalDisplay = document.getElementById('total');
-
 const cartSubtotal = document.getElementById('cartSubtotal')
-
-//grab the menu-div
 const menuDivs = document.querySelectorAll('.menu-div')
-
 const receipt = document.getElementById('receipt')
-
-// const tipTotal = document.getElementById('tipTotal')
 
 let subtotal = 0;
 
 let tax = .07;
 
+let receiptArray = []
 //grab the types
 const menuType = [
     'appetizers', 
@@ -376,81 +370,6 @@ const menuType = [
     'drinks', 
     'desserts'
 ]
-
-let receiptArray = []
-
-confirmBtn.addEventListener('click', (e)=> {
-    e.preventDefault()
-    const subtotal = parseFloat(cartSubtotal.innerText)
-    const tipAmt = parseFloat(document.getElementById('tipAmt').value)
-    const otherAmt = parseFloat(document.getElementById('otherAmt').value)
-    const yourTip = document.getElementById('yourTip')
-    const theSubtotal = document.getElementById('theSubtotal')
-    const taxDisplay = document.getElementById('tax')
-    
-
-    let taxTotal = subtotal * tax;
-
-    let receiptTip = isNaN(tipAmt) ? otherAmt : (subtotal * tipAmt)
-
-    let total = isNaN(tipAmt) ? subtotal + otherAmt + taxTotal : (subtotal * tipAmt) + subtotal + taxTotal
-
-
-
-
-    theSubtotal.innerText = subtotal
-    taxDisplay.innerText = taxTotal.toFixed(2)
-    yourTip.innerText = receiptTip.toFixed(2)
-    totalDisplay.innerText = total.toFixed(2)
-})
-
-
-
-//make receipt
-const makeReceipt =(obj, el)=> {
-    const tableRow = document.createElement('tr')
-    tableRow.classList.add('receipt-item0', 'text-center')
-
-    const receiptChoice = document.createElement('td')
-    receiptChoice.classList.add('receipt-item', 'text-center')
-    receiptChoice.innerText = obj.item
-
-    const receiptQty = document.createElement('td')
-    receiptQty.classList.add('receipt-qty', 'text-center')
-    receiptQty.setAttribute('id', `qty${obj.id}`)
-    receiptQty.innerText = obj.qty
-
-    const receiptPrice = document.createElement('td')
-    receiptPrice.classList.add('receipt-price', 'text-center')
-    receiptPrice.innerText = obj.price
-
-    const itemSubtotal = document.createElement('td')
-    itemSubtotal.classList.add('item-Subtotal', 'text-center')
-    itemSubtotal.setAttribute('id', `subTotal${obj.id}`)
-    itemSubtotal.innerText = obj.itemTotal
-
-    tableRow.appendChild(receiptChoice)
-    tableRow.appendChild(receiptQty)
-    tableRow.appendChild(receiptPrice)
-    tableRow.appendChild(itemSubtotal)
-
-    
-
-    el.appendChild(tableRow)
-
-}
-
-const updateReceipt =(obj, qty, itemTotal)=> {
-    const receiptQty = document.getElementById(`qty${obj.id}`)
-    receiptQty.classList.add('receipt-qty')
-    receiptQty.innerText = qty
-
-    const itemSubtotal = document.getElementById(`subTotal${obj.id}`)
-    console.log(obj.itemTotal)
-    itemSubtotal.innerText = obj.itemTotal.toFixed(2)
-
-}
-
 
 let menuItems = [
     {
@@ -460,7 +379,7 @@ let menuItems = [
         desc: 'fresh salmon spread and toast',
         imgUrl: 'salmon-dip.jpg',
         price: 10.99,
-        qty: 0
+        qty: 10
     },
     {
         id: 2,
@@ -530,7 +449,7 @@ let menuItems = [
         type: 'drinks',
         item: 'lemonade',
         desc: 'fresh squeezed lemonade',
-        imgUrl: 'fresh-squeezed-lemon.jpg',
+        imgUrl: 'fresh-squeezed-lemonade.jpg',
         price: 3.99,
         qty: 0
     },
@@ -539,7 +458,7 @@ let menuItems = [
         type: 'drinks',
         item: 'beer',
         desc: 'beer',
-        imgUrl: '',
+        imgUrl: 'beer.jpg',
         price: 3.99,
         qty: 0
     },
@@ -548,7 +467,7 @@ let menuItems = [
         type: 'drinks',
         item: 'wine',
         desc: 'red wine',
-        imgUrl: '',
+        imgUrl: 'wine.jpg',
         price: 7.99,
         qty: 0
     },
@@ -557,7 +476,7 @@ let menuItems = [
         type: 'drinks',
         item: 'milkshake',
         desc: 'oreo milkshake',
-        imgUrl: '',
+        imgUrl: 'Oreo-milkshake.jpg',
         price: 5.99,
         qty: 0
     },
@@ -566,7 +485,7 @@ let menuItems = [
         type: 'desserts',
         item: 'sweet potato pie',
         desc: 'slice sweet potato pie',
-        imgUrl: '',
+        imgUrl: 'sweet-potato-pie.jpg',
         price: 4.99,
         qty: 0
     },
@@ -575,7 +494,7 @@ let menuItems = [
         type: 'desserts',
         item: 'white chocolate strawberry cheesecake',
         desc: 'slice of white chocolate strawberry cheesecake',
-        imgUrl: '',
+        imgUrl: 'Strawberry-White-Chocolate-Cheesecake.jpg',
         price: 4.99,
         qty: 0
     },
@@ -584,7 +503,7 @@ let menuItems = [
         type:'desserts',
         item: 'chocolate chip cookies',
         desc: 'a bakers dozen chocolate chip cookies',
-        imgUrl: '',
+        imgUrl: 'cookies.jpg',
         price: 4.99,
         qty: 0
     },
@@ -593,10 +512,100 @@ let menuItems = [
         type: 'desserts',
         item: 'pudding',
         desc: ['chocolate', 'vanilla',  'rice'],
-        imgUrl: '',
+        imgUrl: 'pudding.jpg',
         price: 4.99,
         qty:0
     }]
+
+    // const chitlinPotPie = {
+    //     id: 17,
+    //     type: 'entrees',
+    //     item: 'chitlin',
+    //     desc: 'Jarissas fav dish',
+    //     imgUrl: '',
+    //     price: 36.99,
+    //     qty: 0
+    // }
+
+    // menuItems = 
+
+
+const getTotal=()=> {
+    // confirmBtn.addEventListener('click', (e)=> {
+    //     e.preventDefault()
+        const subtotal = parseFloat(cartSubtotal.innerText)
+        const tipAmt = parseFloat(document.getElementById('tipAmt').value)
+        const otherAmt = parseFloat(document.getElementById('otherAmt').value)
+        const yourTip = document.getElementById('yourTip')
+        const theSubtotal = document.getElementById('theSubtotal')
+        const taxDisplay = document.getElementById('tax')
+        
+        
+        let taxTotal = subtotal * tax;
+        
+        let receiptTip = isNaN(tipAmt) ? otherAmt : (subtotal * tipAmt)
+        
+        let total = isNaN(tipAmt) ? subtotal + otherAmt + taxTotal : receiptTip + subtotal + taxTotal
+        
+        
+        
+        
+        theSubtotal.innerText = subtotal
+        taxDisplay.innerText = taxTotal.toFixed(2)
+        yourTip.innerText = receiptTip.toFixed(2)
+        totalDisplay.innerText = total.toFixed(2)
+    })
+}
+
+
+
+
+//make receipt
+const makeReceipt =(obj, el)=> {
+    const tableRow = document.createElement('tr')
+    tableRow.classList.add('receipt-item0', 'text-center')
+
+    const receiptChoice = document.createElement('td')
+    receiptChoice.classList.add('receipt-item', 'text-center')
+    receiptChoice.innerText = obj.item
+
+    const receiptQty = document.createElement('td')
+    receiptQty.classList.add('receipt-qty', 'text-center')
+    receiptQty.setAttribute('id', `qty${obj.id}`)
+    receiptQty.innerText = obj.qty
+
+    const receiptPrice = document.createElement('td')
+    receiptPrice.classList.add('receipt-price', 'text-center')
+    receiptPrice.innerText = obj.price
+
+    const itemSubtotal = document.createElement('td')
+    itemSubtotal.classList.add('item-Subtotal', 'text-center')
+    itemSubtotal.setAttribute('id', `subTotal${obj.id}`)
+    itemSubtotal.innerText = obj.itemTotal
+
+    tableRow.appendChild(receiptChoice)
+    tableRow.appendChild(receiptQty)
+    tableRow.appendChild(receiptPrice)
+    tableRow.appendChild(itemSubtotal)
+
+    
+
+    el.appendChild(tableRow)
+
+}
+
+const updateReceipt =(obj, qty, itemTotal)=> {
+    const receiptQty = document.getElementById(`qty${obj.id}`)
+    receiptQty.classList.add('receipt-qty')
+    receiptQty.innerText = qty
+
+    const itemSubtotal = document.getElementById(`subTotal${obj.id}`)
+    console.log(obj.itemTotal)
+    itemSubtotal.innerText = obj.itemTotal.toFixed(2)
+
+}
+
+
 
 
 
@@ -650,15 +659,15 @@ menuItems.forEach(item => {
                 <button 
                     class="btn btn-primary btn-subtract" 
                     id="btnSubtract${item.id}"
-                    data-id="${item.id}
-                    data-qty="${item.id}
+                    data-id="${item.id}"
+                    data-qty="${item.qty}"
                     > - </button>
                     <span class="quantity" id="quantity${item.id}">${item.qty}</span>
                     <button 
                     class="btn btn-primary btn-add" 
-                    id="btnAdd${item.id}
-                    data-id="${item.id}
-                    data-qty="${item.id}"
+                    id="btnAdd${item.id}"
+                    data-id="${item.id}"
+                    data-qty="${item.qty}"
                     > + </button>
             </div>
         </div>
@@ -694,12 +703,16 @@ const cartButtons = document.querySelectorAll('.cart-btn')
 cartButtons.forEach(button => {
 
     const price = parseFloat(button.getAttribute('data-price'))
-    let qty = parseFloat(button.getAttribute('data-qty'))
     const item = button.getAttribute('data-item')
     const id = parseFloat(button.getAttribute('data-id'))
     
     button.addEventListener('click', ()=>{
-        qty+=1
+        let qty;
+        for (let i = 0; i < menuItems.length; i++) {
+            menuItems[i].id == id ? qty = menuItems[i].qty : null
+        }
+
+        console.log(qty);
         addItems(price, qty, item, id)
 
         // qty+=1
@@ -742,6 +755,15 @@ const addItems =(price, qty, item, id)=> {
         itemTotal: qty * price
     }
     
+    console.log(itemObj)
+    
+    receiptArray = [...receiptArray, itemObj]
+    makeReceipt(itemObj, receipt)
+    
+    subtotal+= price
+    cartSubtotal.innerText = subtotal.toFixed(2)
+    
+    
     if (itemObj.qty == 1) {
         receiptArray = [...receiptArray, itemObj]
         makeReceipt(itemObj, receipt)
@@ -756,15 +778,16 @@ const addItems =(price, qty, item, id)=> {
         }
     }
     
-    subtotal+= price
-    cartSubtotal.innerText = subtotal.toFixed(2)
-
+    
     // console.log(receiptArray)
 }
+
 const btnSubtract = document.querySelectorAll('.btn-subtract')
 const btnAdd = document.querySelectorAll('.btn-add')
 
 btnSubtract.forEach(button => {
+    
+    
     button.addEventListener('click', ()=> {
         // console.log(button)
         const btnQty= parseFloat(button.getAttribute('data-qty'))
@@ -776,23 +799,35 @@ btnSubtract.forEach(button => {
                 menuItems[i].qty-=1
                 spanQty.innerText = menuItems[i].qty
             }
+            
+            if (menuItems[i].id == 13) {
+                console.log(pudding.qty)
+            }
         }
     })
 })
 
+console.log(cartButtons[12].dataset.qty)
+
 btnAdd.forEach(button => {
+
+    console.log(button)
     button.addEventListener('click', ()=> {
-        // console.log(button)
-        const btnQty= parseFloat(button.getAttribute('data-qty'))
+        const btnQty = parseFloat(button.getAttribute('data-qty'))
         const btnId = parseFloat(button.getAttribute('data-id'))
         const spanQty = document.getElementById(`quantity${btnId}`)
 
         for (let i = 0; i < menuItems.length; i++) {
-            if(menuItems[i].id == btnId && menuItems[i].qty > 0) {
+            if(menuItems[i].id == btnId && menuItems[i].qty < 20 
+                && cartButtons[i].dataset.id == btnId) {
+                console.log(cartButtons[i]);
                 menuItems[i].qty+=1
+                cartButtons[i].setAttribute('data-qty', menuItems[i].qty)
                 spanQty.innerText = menuItems[i].qty
             }
         }
     })
 })
+
+
 
